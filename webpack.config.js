@@ -13,10 +13,11 @@ module.exports = env => {
 
   return {
     entry: {
-      app: path.join(__dirname, './src/'),
+      morph: path.join(__dirname, './src/'),
+      demo: path.join(__dirname, './src/demo'),
     },
     output: {
-      filename: 'morph.js',
+      filename: '[name].js',
       path: path.join(__dirname, './lib/'),
       publicPath: '/',
     },

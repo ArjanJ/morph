@@ -1,9 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <title>Morph</title>
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'xbs6rbk',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
   </head>
   <body>
-    
+    <header class="header">
+      <div class="header__wrapper">
+        <h1 class="header__heading">Morph.js</h1>
+        <h2 class="header__subheading">Morph one element into another.</h2>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section__wrapper">
+        <h2 class="section__heading">Simple</h2>
+        <p>Here we use Morph to transform the box on the left to be the same dimensions as the box on the right.</p>
+      </div>
+      <div class="example example--simple">
+        <div class="section__wrapper">
+          <div class="box-1"></div>
+          <div class="box-2"></div>
+        </div>
+      </div>
+      <div class="section__wrapper">
+        <div class="controls">
+          <button class="button button--pri" id="btn-simple-active">Morph</button>
+          <button class="button button--sec" id="btn-simple-reset">Reset</button>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section__heading">Awesome</h2>
+      <div class="example example--awesome">
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section__heading">Steps</h2>
+      <div class="example example--steps">
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </section>
   </body>
 </html>

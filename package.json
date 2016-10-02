@@ -2,7 +2,7 @@
   "name": "morph",
   "version": "0.0.1",
   "description": "Morph a DOM element into another using transform.",
-  "main": "index.js",
+  "main": "lib/morph.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "NODE_ENV=development webpack-dev-server --env.dev",

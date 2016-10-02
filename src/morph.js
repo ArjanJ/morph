@@ -1,8 +1,8 @@
-const Morph = ((from, to) => {
+const Morph = (from, to) => {
   const fromOffset = from && from.nodeType ? from.getBoundingClientRect() : from;
   const toOffset = to && to.nodeType ? to.getBoundingClientRect() : to;
   const transitionendString = getTransitionString();
-  const transformString = getTransitionString();
+  const transformString = getTransformString();
   let transform = {};
 
   function getTransitionString() {
@@ -68,7 +68,12 @@ const Morph = ((from, to) => {
     const s = (x, y) => `scale(${x}, ${y})`;
     const t = (x, y) => `translate(${x}px, ${y}px)`;
     const transformValue = `${t(transform.transX || 0, transform.transY || 0)} ${s(transform.scaleX || 1, transform.scaleY || 1)}`;
-    from.style[transformString] = transformValue;
+    return from.style[transformString] = transformValue;
+  }
+
+  function reset() {
+    from.removeAttribute('style');
+    return this;
   }
 
   function then(cb, el = from, delay = 0) {
@@ -84,11 +89,12 @@ const Morph = ((from, to) => {
   }
 
   return {
+    reset,
     scale,
     translate,
     transform,
     then,
   };
-})();
+};
 
 export default Morph;

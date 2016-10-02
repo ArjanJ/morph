@@ -1,3 +1,2 @@
 import Morph from './morph';
-
-console.log(Morph);
+import './morph.scss';
