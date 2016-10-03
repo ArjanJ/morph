@@ -7,6 +7,7 @@
     "start": "npm run dev",
     "dev": "NODE_ENV=development webpack-dev-server --env.dev",
     "build": "rm -Rf lib/* | NODE_ENV=production webpack --progress --env.prod",
+    "deploy": "git push origin :gh-pages && git subtree push --prefix lib origin gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
