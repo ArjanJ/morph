@@ -3,7 +3,7 @@ const Morph = (from, to) => {
   const toOffset = to && to.nodeType ? to.getBoundingClientRect() : to;
   const transitionendString = getTransitionString();
   const transformString = getTransformString();
-  let transform = {};
+  const transform = Object.assign(scale(), translate());
 
   function getTransitionString() {
     const transitions = {
@@ -45,55 +45,62 @@ const Morph = (from, to) => {
   function scale() {
     const scaleX = (toOffset.width / fromOffset.width).toFixed(3);
     const scaleY = (toOffset.height / fromOffset.height).toFixed(3);
-    transform.scaleX = scaleX,
-    transform.scaleY = scaleY;
-    apply();
-    return this;
+    return {
+      scaleX,
+      scaleY,
+    };
   }
 
-  function translate() {
+  function translate(cb) {
     const transX = (toOffset.left - fromOffset.left);
     const transY = (toOffset.top - fromOffset.top);
-    transform.transX = transX,
-    transform.transY = transY;
-    apply();
+    return {
+      transX,
+      transY,
+    };
+  }
+
+  function applyScale() {
+    return apply(() => from.style.scale = `${transform.scaleX || 1} ${transform.scaleY || 1}`);
+  }
+
+  function applyTranslate() {
+    return apply(() => from.style.translate = `${transform.transX || 0}px ${transform.transY || 0}px`);
+  }
+
+  function apply(cb) {
+    window.requestAnimationFrame(cb);
+  }
+
+  function reset(prop) {
+    if (typeof prop !== 'string') {
+      from.removeAttribute('style');
+    } else {
+      from.style.removeProperty(prop);
+    }
     return this;
   }
 
-  function apply() {
-    window.requestAnimationFrame(applyTransform);
-  }
+  function next(callbacks) {
+    const complete = () => {
+      from.removeEventListener(transitionendString, complete);
+      if (typeof callbacks[0] !== 'function') { return null; }
+      window.requestAnimationFrame(callbacks[0]);
+      callbacks.splice(0, 1);
+      if (callbacks.length) {
+        next(callbacks);
+      }
+    };
 
-  function applyTransform() {
-    const s = (x, y) => `scale(${x}, ${y})`;
-    const t = (x, y) => `translate(${x}px, ${y}px)`;
-    const transformValue = `${t(transform.transX || 0, transform.transY || 0)} ${s(transform.scaleX || 1, transform.scaleY || 1)}`;
-    return from.style[transformString] = transformValue;
-  }
-
-  function reset() {
-    from.removeAttribute('style');
-    return this;
-  }
-
-  function then(cb, el = from, delay = 0) {
-    if (!el || !el.nodeType) { return null; }
-    return new Promise((resolve, reject) => {
-      const complete = () => {
-        el.removeEventListener(transitionendString, complete);
-        setTimeout(cb, delay);
-        resolve(this);
-      };
-      el.addEventListener(transitionendString, complete);
-    });
+    from.addEventListener(transitionendString, complete);
   }
 
   return {
     reset,
-    scale,
-    translate,
+    scale: applyScale,
+    translate: applyTranslate,
     transform,
-    then,
+    next,
   };
 };
 

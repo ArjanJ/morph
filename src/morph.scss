@@ -53,18 +53,20 @@ body {
   }
 
   &__heading {}
+  &__copy { margin-bottom: 0; }
 }
 
 .example {
   min-height: 300px;
   margin-bottom: ($base-space);
+  padding: ($base-space);
   position: relative;
 
-  &--simple {
+  &--simple,
+  &--sequence {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ($base-space);
 
     .section__wrapper {
       display: flex;
@@ -75,7 +77,7 @@ body {
     .box-1,
     .box-2 {
       transform-origin: 0 0;
-      transition: all 0.45s ease-in-out;
+      transition: all 0.5s ease-in-out;
     }
 
     .box-1 {
@@ -88,6 +90,56 @@ body {
       width: 130px;
       height: 130px;
       background: mix(black, $red, 20);
+    }
+  }
+
+  &--modal {
+    display: flex;
+    align-items: center;
+
+    .section__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 640px;
+      height: 320px;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      background: $red;
+      pointer-events: none;
+      visibility: hidden;
+      transform-origin: 0 0;
+      transition: all 0.45s ease-in-out;
+
+      &--active {
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      &__text {
+        cursor: pointer;
+        font-size: 2.4rem;
+        font-weight: 600;
+      }
+    }
+
+    .modal-button {
+      display: block;
+      width: 175px;
+      padding: ($base-space / 2) ($base-space * 1.5);
+      text-align: center;
+      background: $red;
+      cursor: pointer;
     }
   }
 }
