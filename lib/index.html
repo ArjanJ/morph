@@ -1,9 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-  </head>
+    <title>Morph</title>
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'xbs6rbk',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
+  <link href="/morph.050ee1a5e4314c7ebb6b6d1dc7cfb4a3.css" rel="stylesheet"></head>
   <body>
-    
-  <script src="/morph.js"></script></body>
+    <header class="header">
+      <div class="header__wrapper">
+        <h1 class="header__heading">Morph.js</h1>
+        <h2 class="header__subheading">Morph one element into another.</h2>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section__wrapper">
+        <h2 class="section__heading">Example - Simple</h2>
+        <p class="section__copy">Here we use Morph to transform the box on the left to be the same dimensions as the box on the right.</p>
+      </div>
+      <div class="example example--simple">
+        <div class="section__wrapper">
+          <div class="box-1" id="box-simple-1"></div>
+          <div class="box-2" id="box-simple-2"></div>
+        </div>
+      </div>
+      <div class="section__wrapper">
+        <div class="controls">
+          <button class="button button--pri" id="btn-simple-active">Morph</button>
+          <button class="button button--sec" id="btn-simple-reset">Reset</button>
+        </div>
+        <h4>Code</h4>
+        <!-- <pre>
+<code>import Morph from 'morph';
+
+const M = Morph(leftBox, rightBox);
+M.translate();
+M.scale();</code>
+        </pre> -->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__wrapper">
+        <h2 class="section__heading">Example - Modal</h2>
+        <p class="section__copy">Here we use Morph to transform the box on the left to be the same dimensions as the box on the right.</p>
+      </div>
+      <div class="example example--modal">
+        <div class="section__wrapper">
+          <div class="modal-button">Open Modal</div>
+          <div class="modal">
+            <div id="btn-modal-reset" class="modal__text">Close Modal</div>
+          </div>
+        </div>
+      </div>
+      <div class="section__wrapper">
+        <!-- <h4>Code</h4>
+        <pre>
+<code>import Morph from 'morph';
+
+const M = Morph(leftBox, rightBox);
+M.translate().scale();</code>
+        </pre> -->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__wrapper">
+        <h2 class="section__heading">Example - Sequence</h2>
+        <p class="section__copy">Here we use Morph to transform the box on the left to be the same dimensions as the box on the right.</p>
+      </div>
+      <div class="example example--sequence">
+        <div class="section__wrapper">
+          <div class="box-1" id="box-sequence-1"></div>
+          <div class="box-2" id="box-sequence-2"></div>
+        </div>
+      </div>
+      <div class="section__wrapper">
+        <div class="controls">
+          <button class="button button--pri" id="btn-sequence-active">Run Sequence</button>
+          <button class="button button--sec" id="btn-sequence-reset">Reset</button>
+        </div>
+        <h4>Code</h4>
+        <!-- <pre>
+<code>import Morph from 'morph';
+
+const M = Morph(leftBox, rightBox);
+M.translate();
+M.scale();</code>
+        </pre> -->
+      </div>
+    </section>
+
+  <script src="/demo.js"></script><script src="/morph.js"></script></body>
 </html>
