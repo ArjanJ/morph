@@ -118,6 +118,7 @@ body {
       background: $red;
       pointer-events: none;
       visibility: hidden;
+      box-shadow: 0 6px 28px rgba(black, 0.15);
       transform-origin: 0 0;
       transition: all 0.45s ease-in-out;
 
@@ -136,7 +137,7 @@ body {
     .modal-button {
       display: block;
       width: 175px;
-      padding: ($base-space / 2) ($base-space * 1.5);
+      padding: ($base-space / 1.75) ($base-space * 1.75);
       text-align: center;
       background: $red;
       cursor: pointer;

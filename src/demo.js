@@ -15,16 +15,7 @@ const Simple = () => {
   const M = Morph(components.box1, components.box2);
 
   function handleMorphClick() {
-    M.translate();
-    M.scale();
-    // M.next([
-    //   M.translate,
-    //   () => components.box1.style.opacity = '0.5',
-    //   () => components.box1.style.background = 'blue',
-    //   M.reset.bind(this, 'scale'),
-    //   M.reset.bind(this, 'translate'),
-    //   M.reset,
-    // ]);
+    M.morph();
   }
 
   function init() {
@@ -51,16 +42,14 @@ const Modal = () => {
   }
 
   function handleMorphHover() {
-    M.translate()
-    M.scale();
+    M.morph();
   }
 
   function handleReset() {
     const { modal } = components;
-    M.translate()
-    M.scale();
+    M.morph();
     M.next([
-      () => modal.style.opacity = '0',
+      { opacity: 0 },
       () => components.modal.classList.remove('modal--active'),
       M.reset,
     ]);
@@ -70,7 +59,7 @@ const Modal = () => {
     components.modalBtn.addEventListener('click', handleMorphClick);
     components.btnReset.addEventListener('click', handleReset);
     components.modalBtn.addEventListener('mouseover', handleMorphHover);
-    components.modalBtn.addEventListener('mouseout', () => M.reset());
+    components.modalBtn.addEventListener('mouseout', M.reset);
   }
 
   init();
@@ -87,15 +76,14 @@ const Sequence = () => {
   const M = Morph(components.box1, components.box2);
 
   function handleMorphClick() {
-    M.scale();
+    M.morph();
     M.next([
-      M.translate,
-      () => components.box1.style.opacity = '0.2',
-      M.reset.bind(this, 'translate'),
-      () => components.box1.style.background = 'blue',
-      M.reset.bind(this, 'scale'),
-      () => components.box1.style.opacity = '1',
-      () => components.box1.style.background = 'darkmagenta',
+      { opacity: 0.5 },
+      { background: 'blue' },
+      { rotate: '30deg' },
+      { scale: '1' },
+      { translate: '200px, 50px' },
+      M.reset,
     ]);
   }
 
