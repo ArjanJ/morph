@@ -93,6 +93,10 @@ module.exports = env => {
           postcss: [Autoprefixer({ browsers: ['last 3 versions'] })]
         }
       })),
+      ifProd(new CopyWebpackPlugin([{
+        from: path.join(__dirname, './CNAME'),
+        to: path.join(__dirname, './'),
+      }])),
     ]),
   };
 };
