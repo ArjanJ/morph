@@ -65,7 +65,7 @@ module.exports = env => {
       ifProd(new webpack.optimize.DedupePlugin()),
       ifProd(new ExtractTextPlugin({
         allChunks: true,
-        filename: '[name].[contenthash].css',
+        filename: '[name].css',
       })),
       ifProd(new webpack.DefinePlugin({
         'process.env': {

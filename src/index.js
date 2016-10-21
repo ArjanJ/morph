@@ -1,2 +1,4 @@
-// import Morph from './morph';
-import './morph.scss';
+import morph from './morph';
+
+var plugin = window.Morph || morph;
+window.Morph = plugin;

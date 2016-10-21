@@ -1,4 +1,5 @@
 import Morph from './morph';
+import './morph.scss';
 
 function $(query) {
   return document.querySelector(query);
@@ -78,9 +79,9 @@ const Sequence = () => {
   function handleMorphClick() {
     M.morph();
     M.next([
-      { opacity: 0.5 },
       { background: 'blue' },
       { rotate: '30deg' },
+      { opacity: 0.5 },
       { scale: '1' },
       { translate: '200px, 50px' },
       M.reset,
